@@ -1,0 +1,12 @@
+## YAML Template.
+---
+AppBundle\Entity\Project:
+    project_{1..20}:
+        projectTopic: <realText($maxNbChars = 60)>
+        keywords: <keywords()>
+        except: <realText($maxNbChars=400)>
+        dateWritten: <dateTimeBetween($startDate='-10 years', $endDate='now', $timezone=null)>
+        content: <paragraphs($nb = 5, $asText = true)>
+        department: <departments()>
+        
+        
