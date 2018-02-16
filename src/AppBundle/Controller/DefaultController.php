@@ -9,87 +9,65 @@ use AppBundle\Form\SearchForm;
 use AppBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use AppBundle\proj_app_objects\ProjectTopicSearchUtility;
 
-class DefaultController extends Controller
-{
+class DefaultController extends Controller {
+
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
-    {
+    /* The indexAction controller, apart from being the controller for the 
+     * home page, it shall also server as the main search page for any project
+     * topic entered.
+     * 
+     */
+    public function indexAction(Request $request) {
         $form = $this->createForm(SearchForm::class);
-        
+
         // lets handle the request 
         $form->handleRequest($request);
-        
-        if($form->isSubmitted() && $form->isValid()){
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // The string collected from our search input textfield.
             $projectTopic = $form->getData();
             
-            $projectSearch_array = [];
-            // Uncomment bellow line of code for debugging purposes.
-            //dump($projectTopic);die;
-            
-            // We need to get the Projects available form our database
-            // and then loop through them to check if their keywords 
-            // match what we have from out search string.
+            // Collect our Project objects from the database to loop through its 
+            // keywords array.
             $em = $this->getDoctrine()->getManager();
             $projects = $em->getRepository(Project::class)
-                    ->findAll();            
+                    ->findAll();
             
-            foreach($projects as $project){
-               $projectSearch_array[] = [
-                 $project->getKeywords()
-               ];
-            }
+            // Create our utility object to help us out here.
+            $pTSU = new ProjectTopicSearchUtility();
             
-            $data = ['keywords'=>$projectSearch_array ];
+            // Assign its returned value into the new array for delivery to the 
+            // view.            
+            $matchingProject = $pTSU->matchProjectTopic($projects, $projectTopic['search_bar']);
             
-            dump($data); die;
-            
-            
+            // DEBUGGING GODE ----REMEMBER TO REMOVE THIS.
+            dump($matchingProject);
+            die;
         }
-        
+
         return $this->render('default/index.html.twig', [
-            'searchForm'=>$form->createView()
+                    'searchForm' => $form->createView()
         ]);
     }
-    
+
     /**
      * @Route("/topic/{search_string}", name="search_project_topic")
      * @Method("GET")
      */
-    public function searchAction($search_string){
-        /**
-         * This code helps to search for particular keywords from the search_string
-         * in project keywords found inside the database.
-         */
-        $projectTopic = [];
-        
-        // Lets get the project entity before we do the comparisons
-        $em = $this->getDoctrine()->getManager();
-        $project = $em->getRepository(Project::class)
-                ->findAll();
-        foreach($project as $topic){
-            $projectTopic[] = [
-              $topic->getProjectTopic()  
-            ];
-        }
-        $data = [
-            'project'=>$projectTopic
-        ];
-        
-        // do the string comparisons
-        
-        // return a JsonResponse object
-        return new JsonResponse($data);        
+    public function searchAction($search_string) {
         
     }
-    
+
     /**
      * @Route("/admin/login", name="log_user_in")
      * @Method("POST")
      */
-    public function loginAction(){
+    public function loginAction() {
         
     }
+
 }
