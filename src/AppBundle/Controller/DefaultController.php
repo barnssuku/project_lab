@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\SearchForm;
 use AppBundle\Entity\Project;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\proj_app_objects\ProjectTopicSearchUtility;
+use AppBundle\Form\ProjectAddForm;
 
 class DefaultController extends Controller {
 
@@ -55,15 +55,30 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/topic/{search_string}", name="search_project_topic")
-     * @Method("GET")
+     * @Route("/project/add", name="add_project")
+     * @Method("POST")
      */
-    public function searchAction($search_string) {
+    public function addProjectAction(Request $request) {
+        // set up the user interface
+        $form = $this->createForm(ProjectAddForm::class);
+        // Handle form request
+        $form->handleRequest($request);
+        // save collected values into data base.
+        if($form->isSubmitted() && $form->isValid()) {
+            $newProject = $form->getData();
+        }
+    }
+    
+    /**
+     * @Route("/project/request", name="request_project")
+     * @Method("POST")
+     */    
+    public function requestProjectAction() {
         
     }
 
     /**
-     * @Route("/admin/login", name="log_user_in")
+     * @Route("/{slug}/login", name="log_user_in")
      * @Method("POST")
      */
     public function loginAction() {

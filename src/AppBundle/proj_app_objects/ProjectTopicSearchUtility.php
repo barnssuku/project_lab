@@ -62,4 +62,47 @@ class ProjectTopicSearchUtility extends Controller{
         return $matchingProjects;
         
     }
+    
+    /**
+     * This function shall help to clean-up the data collected from the form in
+     * other to have it in the proper way we need for it to be inserted into the 
+     * database.
+     * 
+     * @param array $addedProject 
+     * @return Project a cleaned and arranged Project object.
+     */
+    public function clearInputData($addedProject) {
+        $project = new Project();
+        
+        if ($addedProject == null){
+            return $project;
+        }
+        
+        // Collect all the values inside the form object
+        $projectTitle = $addedProject['project_title'];
+        $keywords = $addedProject['keywords'];
+        $excepts = $addedProject['excepts'];
+        $date_written = $addedProject['date'];
+        $content = $addedProject['content'];
+        $department = $addedProject['department'];
+        
+        // Trim the $projectTitle and add
+        trim($projectTitle);
+        $project->setProjectTopic($projectTitle);
+        
+        // Turn keywords into array of keywords
+        trim($keywords);
+        $array_keywords = explode(" ", $keywords);
+        $project->setKeywords($array_keywords);
+        
+        // Push in the rest of the values gotten.        
+        $project->setExcept(($excepts));
+        $project->setDateWritten(($date_written));
+        $project->setContent(($content));
+        $project->setDepartment(($department));
+        
+        // return the filed array
+        return $project;
+        
+    }
 }
