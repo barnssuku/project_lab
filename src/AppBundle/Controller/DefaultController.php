@@ -66,6 +66,20 @@ class DefaultController extends Controller {
         // save collected values into data base.
         if($form->isSubmitted() && $form->isValid()) {
             $newProject = $form->getData();
+            $projectTopicUtility = new ProjectTopicSearchUtility();
+            $cleanedProject = $projectTopicUtility->cleanInputData($newProject);
+            // Insert object into the database.
+            $em = $this->getDoctrine()->getManager();
+            $projects = $em->getRepository(Project::class);
+            // persist the project object and then flush it into the database.
+            $em.persist($project);
+            $em.flush();
+            
+            // place a response object here.
+            return new response({
+                
+            });
+            
         }
     }
     

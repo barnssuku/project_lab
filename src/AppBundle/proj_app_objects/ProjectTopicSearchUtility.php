@@ -71,7 +71,7 @@ class ProjectTopicSearchUtility extends Controller{
      * @param array $addedProject 
      * @return Project a cleaned and arranged Project object.
      */
-    public function clearInputData($addedProject) {
+    public function cleanInputData($addedProject) {
         $project = new Project();
         
         if ($addedProject == null){
