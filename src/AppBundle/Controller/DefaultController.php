@@ -47,6 +47,11 @@ class DefaultController extends Controller {
             // DEBUGGING GODE ----REMEMBER TO REMOVE THIS.
             dump($matchingProject);
             die;
+            // redirect to rendering page
+            return $this->render('default/search_result.html.twig', array(
+               'projects_found'=>$matchingProject 
+            ));
+            
         }
 
         return $this->render('default/index.html.twig', [
