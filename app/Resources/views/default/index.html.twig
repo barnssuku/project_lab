@@ -6,77 +6,162 @@
     </style>
 {% endblock %}
 
-{% block search_area %}
-    <!--<nav class="navbar navbar-light" style="background-color: #e3f2fd; margin-top: 4px;">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Enter your project topic here" aria-label="Search">
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>-->
-    {{ form_start(searchForm) }}
-        {{ form_widget(searchForm) }}
-        <!--<button type="submit" class="btn btn-outline-primary">Search</button>-->
-    {{ form_end(searchForm) }}
-{% endblock %}
+{% block body %}
+    <!-- Page Content -->
+    <div class="container">
 
-{% block left_side %}
-    <div class="col-lg-6">
-        <p>
-            <span class="text-bold">Projects Lab</span> assist you in researching, writing and preparing Advance Level academic project work, editing and producing materials in pdf, doc, docx and epub file formats depending on your preference.
-        </p>
-        <p>
-            Allow us to handle you work today for quality project materials and good academic grades by first searching for your topic.
-        </p>
-    </div>
-{% endblock %}
+        <div class="row drop-top">
+            
+            <div class="col-md-8">
+                
+                <!-- Search Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Search a project </h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <!--<input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-secondary" type="button">Go!</button>
+                            </span> -->
+                            {{ form_start(searchForm) }} 
+                            {{ form_widget(searchForm) }}
+                            <!--<button type="submit" class="btn btn-outline-primary">Search</button>-->
+                            {{ form_end(searchForm) }}
+                        </div>
+                    </div>
+                </div>            
 
-{% block right_side %}
-    <div class="col-lg-6">
-        <p>We are on a test run, keep testing.</p>
-    </div>
-{%endblock%}
+                <!-- Blog Post -->
+                <div id="home" class="card mb-4">
+                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title">Projects Lab</h2>
+                        <p class="card-text">Projects Lab assist you in researching, writing and preparing Advance Level academic project work, editing and producing materials in pdf, doc, docx and epub file formats depending on your preference. </p>
+                        <p class="card-text">Lets start your project today by your checking from the search bar any match of your project from our database. </p>
+                        <!--<a href="#" class="btn btn-primary">Read More &rarr;</a> -->
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on January 1, 2017 by
+                        <a href="#">Start Bootstrap</a>
+                    </div>
+                </div>
 
-{% block bottom %}
-    <div class="row">							
-        <div class="col-lg-12">
-            <div class="row">
-                <div class="col-lg-3">
-                    <h5 class="">Univerisity</h5>
-                    <ul class="list-unstyled text-small">
-                        <li>ABU Zaria</li>
-                        <li>Bayero Uni, Kano</li>
-                        <li>Uni Calabar</li>
-                        <li>Uni Lagos</li>                                                
-                    </ul>
+                <!-- Blog Post -->
+                <div id="about" class="card mb-4">
+                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title">About us</h2>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                        <!--<a href="#" class="btn btn-primary">Read More &rarr;</a>-->
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on January 1, 2017 by
+                        <a href="#">Start Bootstrap</a>
+                    </div>
                 </div>
-                <div class="col-lg-3">
-                    <h5 class="">Polythenic</h5>
-                    <ul class="list-unstyled text-small">
-                        <li>KADPOLY</li>
-                        <li>PLAPOLY</li>
-                        <li>LAUTECH</li>
-                        <li>EKPOMA</li>
-                    </ul>
+
+                <!-- Blog Post -->
+                <div id="services" class="card mb-4">
+                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title">What we do...</h2>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                        <!--<a href="#" class="btn btn-primary">Read More &rarr;</a>-->
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on January 1, 2017 by
+                        <a href="#">Start Bootstrap</a>
+                    </div>
                 </div>
-                <div class="col-lg-3">
-                    <h5 class="">Monotechnic</h5>
-                    <ul class="list-unstyled text-small">
-                        <li>Bauchi</li>
-                        <li>Al-In Mono</li>
-                        <li>Kazaure Mono</li>
-                        <li>Zamfara</li>
-                    </ul>
+
+                <!-- Blog Post -->
+                <div id="contact" class="card mb-4">
+                    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title">Contact us today</h2>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                        <!--<a href="#" class="btn btn-primary">Read More &rarr;</a>-->
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on January 1, 2017 by
+                        <a href="#">Start Bootstrap</a>
+                    </div>
                 </div>
-                <div class="col-lg-3">
-                    <h5 class="">College of Education</h5>
-                    <ul class="list-unstyled text-small">
-                        <li>FCE Zaria</li>
-                        <li>COE Gidan Waya</li>
-                        <li>COE Bichi</li>
-                        <li>FCE Langtang</li>
-                    </ul>
-                </div>
+
             </div>
+
+            <!-- Sidebar Widgets Column -->
+            <div class="col-md-4">            
+
+                <!-- Categories Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Categories</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Data Gathering</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Data Analysis</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Research</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul class="list-unstyled mb-0">
+                                    <li>
+                                        <a href="#">Data Interpretation</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Project Binding</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Data Cleaning</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Widget -->
+                <div class="card my-4">
+                    <h5 class="card-header">Our Partner Benefits</h5>
+                    <div class="card-body">
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <h6>Dedicated Team.</h6>
+                                <p><small>A full-time, scaleable team of trusted developers.</small></p>
+                            </li><br>
+                            <li>
+                                <h6>Motivated Developers.</h6>
+                                <p><small>Developers are given perks to help them learn, grow and stay healthy.</small></p>
+                            </li><br>
+                            <li>
+                                <h5>Account Manager.</h6>
+                                    <p><small>Dedicated account manager, available any time.</small></p>
+                            </li><br>
+                            <li>
+                                <h6>Flexible Contract.</h6>
+                                <p><small>Flexible contracts with simple monthly billing.</small></p>
+                            </li><br>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+        <!-- /.row -->
+
     </div>
+    <!-- /.container -->
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
 {% endblock %}

@@ -24,7 +24,7 @@ class SearchForm extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('search_bar', TextType::class, array('label' => false, 
-            'attr' => array('class' => 'form-control mr-sm-2 input-lg', 'placeholder' => 'Enter your project topic here to search')))
+            'attr' => array('class' => 'form-control mr-sm-2 input', 'placeholder' => 'Enter your project topic here to search')))
                 ->add('search', SubmitType::class, array('label' => 'Search', 'attr' => array('class' => 'btn btn-outline-primary float-right')));
     }
 
