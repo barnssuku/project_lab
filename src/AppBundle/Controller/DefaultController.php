@@ -76,19 +76,24 @@ class DefaultController extends Controller {
             $em.flush();
             
             // place a response object here.
-            return new response({
-                
-            });
+            return $this->render('default/add_project.html.twig');
             
         }
     }
     
     /**
-     * @Route("/project/request", name="request_project")
+     * This function will get any interested project from the database 
+     * for any user requiring to view it. 
+     * @Route("/project/{project_topic}", name="request_project")
      * @Method("POST")
      */    
-    public function requestProjectAction() {
+    public function requestProjectAction($project_topic) {
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository(Project::class)->findOneBy(array('projectTopic'=>$project_topic));
+        // Call a method to do the display
         
+        // don't forget to create a twig file for this.
+        return $this->render("base.html.twig", array('project'=>$project));
     }
 
     /**
