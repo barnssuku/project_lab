@@ -45,8 +45,8 @@ class DefaultController extends Controller {
             $matchingProject = $pTSU->matchProjectTopic($projects, $projectTopic['search_bar']);
             
             // DEBUGGING GODE ----REMEMBER TO REMOVE THIS.
-            dump($matchingProject);
-            die;
+            //dump($matchingProject);
+            //die;
             // redirect to rendering page
             return $this->render('default/search_result.html.twig', array(
                'projects_found'=>$matchingProject 
@@ -107,6 +107,15 @@ class DefaultController extends Controller {
      */
     public function loginAction() {
         
+    }
+    
+    /**
+     * Any success at searching for a project will redirect to this route
+     * @Route("/project/{list}", name="project_list")
+     * @Method("GET")
+     */
+    public function searchedProjectAction($list){
+        return $this->render('default/search_result.html.twig', array('project_list'=> $list));
     }
 
 }
