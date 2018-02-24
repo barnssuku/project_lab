@@ -48,9 +48,7 @@ class DefaultController extends Controller {
             //dump($matchingProject);
             //die;
             // redirect to rendering page
-            return $this->render('default/search_result.html.twig', array(
-               'projects_found'=>$matchingProject 
-            ));
+            return $this->redirectToRoute('project_list', ['project_list'=>$matchingProject]);
             
         }
 
