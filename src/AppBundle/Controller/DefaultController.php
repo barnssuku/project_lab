@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\SearchForm;
 use AppBundle\Entity\Project;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use AppBundle\proj_app_objects\ProjectTopicSearchUtility;
 use AppBundle\Form\ProjectAddForm;
@@ -47,9 +48,28 @@ class DefaultController extends Controller {
             // DEBUGGING GODE ----REMEMBER TO REMOVE THIS.
             //dump($matchingProject);
             //die;
-            // redirect to rendering page
-            return $this->redirectToRoute('project_list', ['project_list'=>$matchingProject]);
+            // convert the Project topic into a urlencoder here
             
+            // we check for presence of any session in our app, if non we create
+            // one
+            $session = null;
+            if ($request->getSession() == null){
+                $session = new Session();
+                $session->start();                
+                $session->set('projectSearched', ['project'=>$matchingProject]);
+            } else { // if session exist, then we get it and set it values
+                $session = $request->getSession();
+                // since we are getting the session object from request object
+                // it is assumed that the session is started already.
+                // THIS ASSUMPTION MAY BE WRONG HENCE WE SHOULD TRY IT IN A TRY
+                // CATCH BLOCK (EXCEPTIONS)                
+                $session->set('projectSearched', ['project'=>$matchingProject]);
+            }
+            
+            $request->setSession($session);
+            
+            // redirect to rendering page
+            return $this->redirectToRoute('project_search_list', ['list'=>$projectTopic['search_bar']]);            
         }
 
         return $this->render('default/index.html.twig', [
@@ -109,11 +129,21 @@ class DefaultController extends Controller {
     
     /**
      * Any success at searching for a project will redirect to this route
-     * @Route("/project/{list}", name="project_list")
+     * @Route("/project/{list}", name="project_search_list")
      * @Method("GET")
      */
-    public function searchedProjectAction($list){
-        return $this->render('default/search_result.html.twig', array('project_list'=> $list));
+    public function searchedProjectAction($list, Request $request){
+        // Our request object should be passed in here, lets access out session
+        // object from it.
+        // MIND YOU AN ERROR MAY OCCURE, WRITE CODE TO HANDLE IT WHEN IT COMES
+        $session = $request->getSession();
+        // collect session content to pass into the routing process.
+        $projectSearched = $session->get('projectSearched');
+        // after collecting session object, I am required to delete it from 
+        // the session 
+        // $sesson->remove('projectSearched');
+        
+        return $this->render('default/search_result.html.twig', ['list'=>$list, 'project_searched'=>$projectSearched]);
     }
 
 }
