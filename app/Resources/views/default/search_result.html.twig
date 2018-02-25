@@ -12,14 +12,16 @@
                 <div class="list-group" id="list-tab" role="tablist">
                     <!-- investigate how we can add object directly from session 
                     into twig -->
-                    {% for project in project_searched %}                                                   
-                        <a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1"></h5>
-                            </div>
-                            <p class="mb-1">Donec id elit non mi porta gravita at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                            <small>Donec id elit non mi porta.</small>
-                        </a>                            
+                    {% for project in project_searched %} 
+                        {% for proj in project %}                            
+                            <a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{ proj.projectTopic }}</h5>
+                                </div>
+                                <small>{{ proj.department }}</small>
+                                <small>{{ 'May, 1990' }}</small>
+                            </a>                            
+                        {% endfor %}
                     {% endfor %}
                     <!--<a href="" class="list-group-item list-group-item-action flex-column align-items-start active">
                         <div class="d-flex w-100 justify-content-between">
