@@ -144,6 +144,7 @@ class DefaultController extends Controller {
         // $sesson->remove('projectSearched');
         
         return $this->render('default/search_result.html.twig', ['list'=>$list, 'project_searched'=>$projectSearched]);
-    }
+    }    
+    
 
 }

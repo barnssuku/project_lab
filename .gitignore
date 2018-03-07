@@ -1,4 +1,8 @@
 /.web-server-pid
+/.buildpath
+/.project
+/.settings/org.eclipse.wst.validation.prefs
+/nbproject
 /app/config/parameters.yml
 /build/
 /phpunit.xml

@@ -5,8 +5,6 @@
         <group>
             <file>file:/C:/PHPProjects/project_lab/app/Resources/views/default/search_result.html.twig</file>
             <file>file:/C:/PHPProjects/project_lab/src/AppBundle/Controller/DefaultController.php</file>
-            <file>file:/C:/PHPProjects/project_lab/app/Resources/views/base.html.twig</file>
-            <file>file:/C:/PHPProjects/project_lab/app/Resources/views/default/index.html.twig</file>
         </group>
     </open-files>
 </project-private>
