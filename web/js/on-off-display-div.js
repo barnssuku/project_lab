@@ -5,10 +5,9 @@
 $(document).ready(function(){
 	$('.my-list').on('click', function(){		
 		var id = this.id;
-		// call the method to do the removal of all show classes
-		//console.log($('div.display-div'));
+		// call the method to do the removal of all show classes		
 		remShow($('div.display-div'));
-		// after then we call the hide class on
+		// after then we call the show class on
 		$('.item_'+id).addClass('show');		
 	});
 	
