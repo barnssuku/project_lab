@@ -1,0 +1,18 @@
+@charset "ISO-8859-1";
+
+.drop-top {
+	margin-top: 50px;
+}
+
+.drop-bottom {
+	margin-bottom: 50px;
+}
+.hide{	
+	display: none;
+}
+.show{
+	display: block;
+}
+.my-list{
+	cursor: pointer;
+}

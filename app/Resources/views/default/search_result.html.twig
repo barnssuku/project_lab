@@ -14,7 +14,7 @@
                     into twig -->
                     {% for project in project_searched %} 
                         {% for proj in project %}                            
-                            <a href="" class="list-group-item list-group-item-action flex-column align-items-start active" id="load_side_page">
+                            <div class="list-group-item list-group-item-action flex-column align-items-start active my-list {{ 'item_'~loop.index0 }}" id="{{ loop.index0 }}">
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">{{ proj.projectTopic }}</h5>
                                 </div>
@@ -23,7 +23,7 @@
                                 {% for keyword in proj.keywords %}
                                     <span class="badge badge-light">{{ keyword }}</span>
                                 {% endfor %}
-                            </a>                            
+                            </div>                            
                         {% endfor %}
                     {% endfor %}                    
                 </div>
@@ -36,7 +36,7 @@
                 <div class="row">
                 	{% for project in project_searched %}
                 		{% for proj in project %}
-                            <div id="{{ 'id_'~loop.index0 }}" class="blog-post hide">                        
+                            <div id="" class="display-div blog-post hide {{ 'item_'~loop.index0 }}">                        
                                 {% include "default/render_content.html" %}                        
                             </div><!-- /.blog-post -->
                         {% endfor %}
@@ -50,4 +50,7 @@
     <!-- end .container -->
 {% endblock %}
 
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('js/on-off-display-div.js') }}" ></script>
+{% endblock %}
