@@ -31,21 +31,24 @@
                         {% endfor %}
                     {% endfor %}                    
                 </div>
+                <div class="row">
+                	<div class="col add-btn-container">
+                		<a href="{{ path('add_project') }}" class="btn btn-block btn-lg btn-outline-primary">Add project</a>
+                	</div>
+                </div>                
             </div>
             <!-- end #project-list -->
 
             <!-- project details display -->
             <div id="project-details" class="col-md-8 drop-top">
-                <!-- enter the contents of the project here. -->
-                <div class="row">
-                	{% for project in project_searched %}
-                		{% for proj in project %}
-                            <div id="" class="display-div hide {{ 'item_'~loop.index0 }}">                        
-                                {% include "default/render_content.html" %}                        
-                            </div><!-- /.blog-post -->
-                        {% endfor %}
+                <!-- enter the contents of the project here. -->                
+            	{% for project in project_searched %}
+            		{% for proj in project %}
+                        <div id="" class="display-div hide {{ 'item_'~loop.index0 }}">                        
+                            {% include "default/render_content.html" %}                        
+                        </div><!-- /.blog-post -->
                     {% endfor %}
-                </div>                
+                {% endfor %}                               
             </div>
             <!-- end #project-details -->
 

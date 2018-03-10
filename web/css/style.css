@@ -16,3 +16,7 @@
 .my-list{
 	cursor: pointer;
 }
+.add-btn-container{
+	margin-top: 10px; 
+	margin-bottom: 10px;
+}
