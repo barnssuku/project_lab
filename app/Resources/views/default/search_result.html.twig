@@ -1,6 +1,10 @@
 {# empty Twig template #}
 {% extends "base.html.twig" %}
 
+{% block title %}
+   Search Project.
+{% endblock %}
+
 {% block body %}
     <!-- div container -->
     <div class="container">
@@ -8,7 +12,7 @@
         <div class="row drop-top drop-bottom">
 
             <!-- project list -->
-            <div id="project-list" class="col-4 drop-top">
+            <div id="project-list" class="col-md-4 drop-top">
                 <div class="list-group" id="list-tab" role="tablist">
                     <!-- investigate how we can add object directly from session 
                     into twig -->
@@ -19,7 +23,7 @@
                                     <h5 class="mb-1">{{ proj.projectTopic }}</h5>
                                 </div>
                                 <small>{{ proj.department }}</small>
-                                <small>{{ 'May, 1990' }}</small>
+                                <small>{{ proj.dateWritten|date("d/m/Y") }}</small>
                                 {% for keyword in proj.keywords %}
                                     <span class="badge badge-light">{{ keyword }}</span>
                                 {% endfor %}
@@ -31,12 +35,12 @@
             <!-- end #project-list -->
 
             <!-- project details display -->
-            <div id="project-details" class="col-8 drop-top">
+            <div id="project-details" class="col-md-8 drop-top">
                 <!-- enter the contents of the project here. -->
                 <div class="row">
                 	{% for project in project_searched %}
                 		{% for proj in project %}
-                            <div id="" class="display-div blog-post hide {{ 'item_'~loop.index0 }}">                        
+                            <div id="" class="display-div hide {{ 'item_'~loop.index0 }}">                        
                                 {% include "default/render_content.html" %}                        
                             </div><!-- /.blog-post -->
                         {% endfor %}

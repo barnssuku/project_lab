@@ -61,7 +61,7 @@ class DefaultController extends Controller {
                 $session = $request->getSession();
                 // since we are getting the session object from request object
                 // it is assumed that the session is started already.
-                // THIS ASSUMPTION MAY BE WRONG HENCE WE SHOULD TRY IT IN A TRY
+                // THIS ASSUMPTION MAY BE WRONG HENCE WE SHOULD RUN IT IN A TRY
                 // CATCH BLOCK (EXCEPTIONS)                
                 $session->set('projectSearched', ['project'=>$matchingProject]);
             }
@@ -78,15 +78,15 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/project/add", name="add_project")
-     * @Method("POST")
+     * @Route("/add", name="add_project")
+     * @Method("GET")
      */
     public function addProjectAction(Request $request) {
         // set up the user interface
         $form = $this->createForm(ProjectAddForm::class);
         // Handle form request
         $form->handleRequest($request);
-        // save collected values into data base.
+        // save collected values into database.
         if($form->isSubmitted() && $form->isValid()) {
             $newProject = $form->getData();
             $projectTopicUtility = new ProjectTopicSearchUtility();
@@ -98,10 +98,15 @@ class DefaultController extends Controller {
             $em.persist($project);
             $em.flush();
             
-            // place a response object here.
-            return $this->render('default/add_project.html.twig');
-            
+            // place a redirect with a flash here if 
+            // project addition is okay in order to 
+            // avoid page refresh.
+            return $this->render('default/add_project.html.twig');            
         }
+        
+        return $this->render('default/add_project.html.twig', [
+            'newproj'=>$form->createView()            
+        ]);
     }
     
     /**

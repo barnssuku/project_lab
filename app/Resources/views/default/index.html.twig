@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+   Welcome home.
+{% endblock %}
+
 {% block stylesheets %}
     {{ parent() }}
     <style>
@@ -37,12 +41,11 @@
                     <div class="card-body">
                         <h2 class="card-title">Projects Lab</h2>
                         <p class="card-text">Projects Lab assist you in researching, writing and preparing Advance Level academic project work, editing and producing materials in pdf, doc, docx and epub file formats depending on your preference. </p>
-                        <p class="card-text">Lets start your project today by your checking from the search bar any match of your project from our database. </p>
-                        <!--<a href="#" class="btn btn-primary">Read More &rarr;</a> -->
+                        <p class="card-text">Lets start your project today. Check from the search bar for any match for your project inside our database.</p>
+                        
                     </div>
                     <div class="card-footer text-muted">
-                        Posted on January 1, 2017 by
-                        <a href="#">Start Bootstrap</a>
+                        <a href="{{ path('add_project') }}" class="btn btn-outline-primary float-right">add a project</a>
                     </div>
                 </div>
 

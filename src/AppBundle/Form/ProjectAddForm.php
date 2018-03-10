@@ -10,9 +10,9 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Validator\Constraints\Date;
 /**
  * Description of ProjectAddForm
  *
@@ -24,8 +24,10 @@ class ProjectAddForm extends AbstractType {
         $builder->add('project_title', TextType::class, array('label'=>'Project Title', 'attr'=>array('class'=>'', 'placeholder'=>'Enter the project topic...')))
                 ->add('keywords', TextType::class, array('label'=>'Project Keywords', 'attr'=>array('class'=>'', 'placeholder'=>'Enter keywords seperated by spaces')))
                 ->add('except', FileType::class, array('label'=>'Upload Abstract', 'attr'=>array('class'=>'')))
-                ->add('date_written', Date::class, array('label'=>'Date', 'attr'=>array('class'=>'')))
+                ->add('date_written', DateType::class, array('label'=>'Date', 'attr'=>array('class'=>'')))
                 ->add('content', FileType::class, array('label'=>'Chapter Content', 'attr'=>array('class'=>'')))
                 ->add('department', TextType::class, array('label'=>'Department', 'attr'=>array('class'=>'', 'placeholder'=>'Enter your department...')));
     }
+    
+    
 }

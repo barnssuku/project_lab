@@ -1,4 +1,14 @@
 {# empty Twig template #}
 {% extends "base.html.twig" %}
 
+{% block title %}
+    Add Project.
+{% endblock %}
 
+{% block body %}
+    <h2 style="margin-top: 90px;">This is project add.</h2>
+    {{ form_start(newproj) }}
+    {{ form_widget(newproj) }}
+    <button type="submit" class="btn btn-outline-primary">Add project</button>
+    {{ form_end(newproj) }}
+{% endblock %}
